@@ -73,7 +73,7 @@ export default function ItemList() {
     };
 
     return (
-        <div>
+        <div className="flex flex-col justify-center items-center">
             <Item
                 name={item1.name}
                 quantity={item1.quantity}
