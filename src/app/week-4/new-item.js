@@ -10,7 +10,7 @@ export default function Counter(){
     return(
         <div className="relative top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-row justify-center items-center max-w-[250px]">
             <input 
-                className="w-full h-20 mr-2 text-6xl bg-gray-500 rounded-lg" 
+                className="w-full h-20 mr-2 pl-3 text-6xl bg-gray-500 rounded-lg" 
                 type="text" 
                 value={count} 
             />
