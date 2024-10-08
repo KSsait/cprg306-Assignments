@@ -1,8 +1,8 @@
 "use client";
 
-import {useState} from "react";
+import { useState } from "react";
 
-export default function Counter(){
+export default function ShopForm(){
     const [quantity, setQuantity] = useState(1);
     const [name, setName] = useState("");
     const [category, setCategory] = useState("Produce");
@@ -12,6 +12,11 @@ export default function Counter(){
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (name === "") 
+        {
+            alert("Please enter a name for the item.");
+            return;
+        }
         let item = {name, quantity, category};
         console.log(item);
         alert("Item Added to Cart!\n" + item.name + " x" + item.quantity + " from " + item.category); 
@@ -31,6 +36,7 @@ export default function Counter(){
                     className="border border-black text-black rounded-lg p-2 w-[310px]"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
+                    
                 />
             </div>
 
@@ -43,14 +49,14 @@ export default function Counter(){
                     />
                     <button
                         disabled={quantity==20}
-                        className="absolute disabled:bg-slate-600 disabled:text-slate-600 right-44 top-1 text-green-500 text-2xl bg-purple-600 size-8 hover:bg-gray-400 rounded-lg mr-2" 
+                        className="absolute disabled:bg-gray-500 disabled:text-gray-500 right-44 top-1 text-green-500 text-2xl bg-purple-600 size-8 hover:bg-gray-400 rounded-lg mr-2" 
                         onClick={increment}>
                         +
                     </button>
 
                     <button 
                         disabled={quantity==1} 
-                        className="absolute disabled:bg-slate-600 disabled:text-slate-600 right-36 top-1 text-center text-red-500 text-2xl bg-yellow-300 size-8 hover:bg-gray-400 rounded-lg" 
+                        className="absolute disabled:bg-gray-500 disabled:text-gray-500 right-36 top-1 text-center text-red-500 text-2xl bg-yellow-300 size-8 hover:bg-gray-400 rounded-lg" 
                         onClick={decrement}>
                         -
                     </button>
@@ -81,9 +87,10 @@ export default function Counter(){
                 <button
                 type="submit"
                 onClick={handleSubmit}
-                className="bg-blue-600 rounded-lg p-2 mt-2 w-[310px] hover:bg-teal-700">
+                className="bg-blue-600 rounded-lg p-2 mt-2 w-[310px] hover:bg-teal-700"
+                >
                 Add to Cart  
-                </button>      
+                </button>   
             </div>          
         </form>
     );
