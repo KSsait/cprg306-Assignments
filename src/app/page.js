@@ -16,6 +16,9 @@ export default function Page() {
         <li className="mt-2 text-center text-lg text-purple-400">
           <Link href="/week-5">Week 5 - Interactivity with Forms</Link>
         </li>
+        <li className="mt-2 text-center text-xl text-purple-600">
+          <Link href="/week-6">Week 6 - Handling Lists</Link>
+        </li>
       </ul>
       <div className="absolute right-0 left-0 bottom-0 text-center text-red-600 mb-10">
         <Link href="/test" className="text-2xl">!Test!</Link> 
