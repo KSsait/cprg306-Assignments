@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import itemsJson from "./items.json";
+import ShowGrouped from "./group";
 
 
 export default function ItemList() {
@@ -9,7 +10,18 @@ export default function ItemList() {
     let items = [...itemsJson];
     items.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
     
-
+    const groupBy = (array, key) => {
+        return array.reduce((acc, obj) => {
+          const keyValue = obj[key]; 
+    
+          if (!acc[keyValue]) {
+            acc[keyValue] = [];
+          }
+          
+          acc[keyValue].push(obj);
+          return acc;
+        }, {});
+      };
 
     return (
 
@@ -22,7 +34,7 @@ export default function ItemList() {
 
             <ul className="flex flex-col items-center">
                 {items.map((item) => (
-                    <li key={item.id} onClick={()=> handleClick(item.id)} className={`${ item.id === sortBy ? "bg-slate-200" : "bg-slate-700" } m-3 p-2 bg-gray-700 w-80 text-center`}>
+                    <li key={item.id} className={`m-3 p-2 bg-gray-700 w-80 text-center`}>
                         <h2 className="text-green-500 capitalize">{item.name}</h2>
                         <h2 className="text-blue-300">{item.quantity} {item.category}</h2>
                     </li>
