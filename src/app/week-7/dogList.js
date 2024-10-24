@@ -1,5 +1,5 @@
 
-import Dog from "./Dog"
+
 
 export default function DogList({dogs, onDeleteDog}) {
     
