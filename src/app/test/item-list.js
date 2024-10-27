@@ -2,13 +2,11 @@
 
 import Item from "./item";
 import { useState } from "react";
-import itemsJson from "./items.json"; 
 
-export default function ItemList() {
+export default function ItemList({ items }) {
     const [sortBy, setSortBy] = useState("name");
-    let items = [...itemsJson];
     const sortedItems = [...items].sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
-
+    
     const groupBy = (array, key) => {
         return array.reduce((acc, obj) => {
           const keyValue = obj[key]; 
@@ -23,7 +21,8 @@ export default function ItemList() {
       };
 
     return (
-        <main>
+
+        <main className="bg-black">
             <div className="flex justify-center mb-6 mt-8">
                 <button onClick={() => setSortBy("name")} className=" bg-blue-700 text-white font-bold p-4 rounded-md mr-4">Sort By Name</button>
                 <button onClick={() => setSortBy("category")} className=" bg-blue-900 text-white font-bold p-4 rounded-md mr-4">Sort By Category</button>
@@ -39,7 +38,6 @@ export default function ItemList() {
                     </Item>
                 ))}
             </ul>
-
         </main>
     );
 }

@@ -1,12 +1,12 @@
 export default function Item({name, quantity, category}) {
     return(
-        <div className="ml-4 w-1/3">
-            <ul>
-                <li className="bg-gray-700 mb-2 list-none text-center justify-center">       
-                    <h2 className="text-green-500 w">{name}</h2>
+        <div>
+            <li className="m-2 p-2 bg-gray-700 w-80 text-center">
+                <ul>
+                    <h2 className="text-green-500 capitalize">{name}</h2>
                     <h2 className="text-blue-300">{quantity} {category}</h2>
-                </li>
-            </ul>
+                </ul>
+            </li>
         </div>
     );
 };
