@@ -2,22 +2,21 @@
 
 import ItemList from "./item-list";
 import NewItem from "./new-item";
-import itemsData from "./items.json";
 import { useState } from "react";
-import Item from "./item";
+import items from "./item.js";
 
 export default function Page() {
-    const [items, setItems] = useState(itemsData);
+    const [itemList, setItemList] = useState(items);
 
     const handleAddItem = (item) => {
-        setItems([...items, item]);
+        setItemList([...itemList, item]);
     }
 
     return (
         <main className="bg-black h-screen">
             <h1 className="font-bold text-2xl text-center mb-4">Shopping List</h1>
             <NewItem onAddItem={handleAddItem}/>
-            <ItemList items={items}/>
+            <ItemList items={itemList}/>
         </main>
     );        
 }

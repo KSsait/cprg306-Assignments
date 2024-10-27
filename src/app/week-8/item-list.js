@@ -1,12 +1,13 @@
 "use client"
 
 import { useState } from "react";
+import Item from "./item";
 
 
 export default function ItemList({ items }) {
     const [sortBy, setSortBy] = useState("name");
-    let itemlist = [...items];
-    items.sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
+
+    const sortedItems = [...items].sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
     
     const groupBy = (array, key) => {
         return array.reduce((acc, obj) => {
@@ -21,17 +22,22 @@ export default function ItemList({ items }) {
         }, {});
       };
 
+      const handleGroupByCategory = () => {
+        const grouped = groupBy(items, "category");
+        setGroupedItems(grouped);
+    };
+
     return (
 
         <main className="bg-black">
             <div className="flex justify-center mb-6 mt-8">
                 <button onClick={() => setSortBy("name")} className=" bg-blue-700 text-white font-bold p-4 rounded-md mr-4">Sort By Name</button>
                 <button onClick={() => setSortBy("category")} className=" bg-blue-900 text-white font-bold p-4 rounded-md mr-4">Sort By Category</button>
-                <button onClick={() => groupBy(items, "category")} className=" bg-red-700 text-white font-bold p-4 rounded-md">Group By Category</button>
+                <button onClick={handleGroupByCategory} className=" bg-red-700 text-white font-bold p-4 rounded-md">Group By Category</button>
             </div>
 
             <ul className="flex flex-col items-center">
-                {items.map((item) => (
+                {itemlist.map((item) => (
                     <li key={item.id} className={`m-3 p-2 bg-gray-700 w-80 text-center`}>
                         <h2 className="text-green-500 capitalize">{item.name}</h2>
                         <h2 className="text-blue-300">{item.quantity} {item.category}</h2>

@@ -1,10 +1,10 @@
-import Counter from "./new-item";
+import ItemList from "./item-list";
 
 export default function Page() {
     return (
-        <main className='bg-black'>
-            <h1 className="text-center text-4xl m-10 mb-20">stuff go boom</h1>
-            <Counter />
+        <main className="bg-black h-screen">
+            <h1 className="font-bold text-2xl text-center mb-4">Shopping List</h1>
+            <ItemList />
         </main>
     );
 }
