@@ -1,42 +1,50 @@
 "use client"
+
 import { useState, useEffect } from "react";
 
-
-
 const fetchMealIdeas = async (ingredient) => {
-    try {
         const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-        const data = await response.json();
-        setMeals(data.meals);
-    } catch(error) {
-        console.log("Error fetching meals", error);
-    }
-};
+        return response.json();
+}
 
-export default function MealIdeas() {
+export default function MealIdeas({ingredient}) {
     const [meals, setMeals] = useState([]);
 
     const loadMealIdeas = async () => {
-        setMeals(fetchMealIdeas({ingredient}));
+            const fetchedMeals = await fetchMealIdeas(ingredient);
+            if (ingredient) {
+                setMeals(fetchedMeals.meals || []);
+            }
+            else
+            {
+                setMeals([]);
+            }
     }
-    
+
     useEffect(() => {
-        loadMealIdeas();
-    }, []);
+        if (ingredient) {
+            loadMealIdeas();
+        }
+    }, [ingredient]);
 
     return (
         <div>
-            <h1>Meal Ideas</h1>
-            <div>
-                <select onChange={(event) => fetchMealIdeas(event.target.value)}>
-                    {meals.map((meal) => (
-                        <option key={meal.idMeal} value={meal.strMeal}>{meal.strMeal}</option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <img src={meals.strMealThumb} alt="Meal Idea" />
-            </div>
+            <h1 className="text-3xl font-bold mb-5">Meal Ideas</h1>
+            {ingredient ? ( meals.length > 0 ? (
+            <ul>
+                {meals.map((meal) => (
+                    <li key={meal.idMeal}>
+                        <h2>{meal.strMeal}</h2>
+                        <img src={meal.strMealThumb} alt="meal" style={{width: '50px', height: '50px'}} />
+                    </li>
+                ))}
+            </ul>
+            ) : (
+                <p>No meal ideas found</p>
+            )
+            ) : (
+                <p>Select an ingredient to see meal ideas</p>
+            )}
         </div>
-    )
+    );
 }

@@ -8,7 +8,6 @@ export default function Page() {
 
     const getRandomDog = async (breed) => {
 
-        
         try {
         const response = breed ? await fetch(`https://dog.ceo/api/breed/${breed}/images/random`) :
                                  await fetch("https://dog.ceo/api/breeds/image/random");

@@ -3,7 +3,7 @@
 import Item from "./item";
 import { useState } from "react";
 
-export default function ItemList({ items }) {
+export default function ItemList({ items, onItemSelect }) {
     const [sortBy, setSortBy] = useState("name");
     const sortedItems = [...items].sort((a, b) => a[sortBy].localeCompare(b[sortBy]));
     
@@ -30,13 +30,14 @@ export default function ItemList({ items }) {
             </div>
 
             <ul className="flex flex-col items-center">
-                {sortedItems.map((item) => (
-                    <Item key={item.id}
-                          name={item.name}
-                          quantity={item.quantity}
-                          category={item.category}> 
-                    </Item>
-                ))}
+                    {sortedItems.map((item, onSelect) => (
+                        <Item key={item.id}
+                            name={item.name}
+                            quantity={item.quantity}
+                            category={item.category}
+                            onSelect={onItemSelect}
+                        /> 
+                    ))}
             </ul>
         </main>
     );
