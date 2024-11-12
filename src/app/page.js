@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 export default function Page() {
   return (
     <main className="flex flex-col bg-black h-screen">
@@ -27,6 +28,9 @@ export default function Page() {
         </li>
         <li className="mt-2 text-center text-4xl text-purple-900">
           <Link href="/week-9">Week 9 - Authentication</Link>
+        </li>
+        <li className="mt-2 text-center text-5xl text-purple-800">
+          <Link href="/week-10">Week 10 - Cloud Firestore</Link>
         </li>
       </ul>
       <div className="absolute right-0 left-0 bottom-0 text-center text-red-600 mb-10">
